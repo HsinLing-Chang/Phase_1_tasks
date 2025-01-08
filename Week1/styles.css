@@ -1,0 +1,229 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 20px;
+}
+header {
+  position: sticky;
+  top: 0;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  z-index: 10;
+  /* padding: 10px; */
+}
+header .logo {
+  font-weight: bold;
+  margin: 0.5rem;
+}
+header .toggle-btn {
+  display: block;
+  margin-right: 10px;
+  height: 35px;
+  width: 35px;
+  display: none;
+  background-image: url(static/2849812_menu_multimedia_bars_media_icon.png);
+  background-repeat: none;
+  background-position: center;
+  background-size: cover;
+}
+/* header .toggle-btn img {
+  width: 80%;
+  height: 80%;
+} */
+header .nav-bar ul {
+  list-style: none;
+  display: flex;
+}
+header .nav-bar ul li {
+  padding: 0 15px;
+  &:hover {
+    background-color: #a7a4a4;
+  }
+}
+header .nav-bar ul li a {
+  text-decoration: none;
+  color: black;
+  display: block;
+  padding: 0.5rem;
+}
+.wellcome {
+  height: 250px;
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(221, 238, 248);
+}
+main {
+  display: flex;
+  justify-content: center;
+}
+.container {
+  /* margin: 0 auto; */
+  margin: 40px 0;
+  padding: 10px;
+  max-width: 1200px;
+  width: 100%; /*此種方式可以讓寬度在縮小時跟著縮小，讓auto-fit可以被執行*/
+  display: grid;
+  grid-template-rows: 50px 150px 150px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+  grid-template-areas: "small-box small-box small-box small-box small-box small-box" "title1 title1 title2 title3 title4 title5" "title6 title6 title7 title8 title9 title10";
+  border: 3px solid black;
+}
+.item {
+  background-color: crimson;
+  /* border: 3px solid red; */
+}
+.small-box {
+  display: grid;
+  grid-gap: 20px;
+  grid-auto-flow: column;
+  grid-template-rows: 50px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-area: small-box;
+}
+.small-box .small {
+  background-color: rgb(221, 238, 248);
+}
+/* .small-box .small {
+  background-image: url(static/images.jpg);
+  background-repeat: no-repeat;
+  background-size: 80px 100%;
+} */
+.small-box .small-image {
+  width: 80px;
+  height: 100%;
+  vertical-align: middle;
+}
+.small-box .small-text {
+  font-weight: bold;
+  display: inline-block;
+  vertical-align: middle;
+}
+.item1 {
+  grid-area: title1;
+}
+.item6 {
+  grid-area: title6;
+}
+div.img {
+  background-image: url(static/images.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+div.img .star {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  opacity: 50%;
+}
+div.img .text-box {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+@media (min-width: 600px) and (max-width: 1200px) {
+  .container {
+    width: 90%;
+    grid-template-rows: 120px 200px 200px 200px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "small-box small-box small-box small-box"
+      "title1 title2 title3 title4" "title5 title6 title7 title8"
+      "title9 title9 title10 title10";
+  }
+  .small-box {
+    grid-auto-flow: row;
+    grid-template-rows: 50px 50px;
+    grid-template-columns: 1fr 1fr;
+    grid-area: small-box;
+    grid-template-areas: "small-row-1 small-row2" "small-row-3 small-row-3";
+  }
+  .small-box .small-3 {
+    grid-area: small-row-3;
+  }
+  .item9 {
+    grid-area: title9;
+  }
+  .item10 {
+    grid-area: title10;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+    grid-template-rows: repeat(11, 1fr);
+    grid-template-columns: repeat(auto-fit, 100%);
+    grid-template-areas: none;
+  }
+  .wellcome {
+    font-size: 1em;
+  }
+  .small-box {
+    grid-template-rows: 50px 50px 50px;
+    grid-template-columns: 1fr;
+  }
+  .container .box {
+    grid-area: unset;
+  }
+  header .nav-bar {
+    display: none;
+    height: 100vh;
+    width: 60%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: -1px 0 4px black;
+  }
+  header .nav-bar ul {
+    flex-direction: column;
+    /* padding-top: 1.25rem; */
+  }
+  header .nav-bar ul li {
+    text-align: center;
+    margin: 1rem 0;
+  }
+  header .toggle-btn {
+    display: block;
+    z-index: 5;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .nav-bar.active {
+    display: block;
+  }
+  header .toggle-btn.active {
+    background-image: url(static/4115230_cancel_close_delete_icon.png);
+  }
+}
+
+/* .item1 {
+  justify-self: ;
+} */
+/* .item2 {
+  grid-area: main;
+}
+.item3 {
+  grid-area: aside;
+}
+.item4 {
+  grid-area: footer;
+}  */
