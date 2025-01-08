@@ -50,7 +50,8 @@ header .nav-bar ul li a {
 }
 .welcome {
   height: 250px;
-  /* font-size: 2em; */
+  font-size: 2em;
+  font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
