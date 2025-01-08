@@ -18,11 +18,11 @@ header {
 }
 header .logo {
   font-weight: bold;
-  margin: 0.5rem;
+  margin: 0.75rem;
 }
 header .toggle-btn {
   display: block;
-  margin-right: 10px;
+  margin-right: 15px;
   height: 35px;
   width: 35px;
   display: none;
@@ -46,7 +46,7 @@ header .nav-bar ul li a {
   text-decoration: none;
   color: black;
   display: block;
-  padding: 0.5rem;
+  padding: 0.75rem;
 }
 .wellcome {
   height: 250px;
