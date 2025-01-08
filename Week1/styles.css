@@ -71,7 +71,7 @@ main {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
   grid-template-areas: "small-box small-box small-box small-box small-box small-box" "title1 title1 title2 title3 title4 title5" "title6 title6 title7 title8 title9 title10";
-  border: 3px solid black;
+  /* border: 3px solid black; */
 }
 .item {
   background-color: crimson;
