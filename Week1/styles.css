@@ -15,7 +15,6 @@ header {
   justify-content: space-between;
   background-color: white;
   z-index: 10;
-  /* padding: 10px; */
 }
 header .logo {
   font-weight: bold;
@@ -32,10 +31,7 @@ header .toggle-btn {
   background-position: center;
   background-size: cover;
 }
-/* header .toggle-btn img {
-  width: 80%;
-  height: 80%;
-} */
+
 header .nav-bar ul {
   list-style: none;
   display: flex;
@@ -66,11 +62,10 @@ main {
   justify-content: center;
 }
 .container {
-  /* margin: 0 auto; */
   margin: 40px 0;
   padding: 10px;
   max-width: 1200px;
-  width: 100%; /*此種方式可以讓寬度在縮小時跟著縮小，讓auto-fit可以被執行*/
+  width: 100%;
   display: grid;
   grid-template-rows: 50px 150px 150px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -93,11 +88,7 @@ main {
 .small-box .small {
   background-color: rgb(221, 238, 248);
 }
-/* .small-box .small {
-  background-image: url(static/images.jpg);
-  background-repeat: no-repeat;
-  background-size: 80px 100%;
-} */
+
 .small-box .small-image {
   width: 80px;
   height: 100%;
@@ -214,16 +205,3 @@ div.img .text-box {
     background-image: url(static/4115230_cancel_close_delete_icon.png);
   }
 }
-
-/* .item1 {
-  justify-self: ;
-} */
-/* .item2 {
-  grid-area: main;
-}
-.item3 {
-  grid-area: aside;
-}
-.item4 {
-  grid-area: footer;
-}  */
