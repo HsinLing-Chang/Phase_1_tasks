@@ -48,9 +48,9 @@ header .nav-bar ul li a {
   display: block;
   padding: 0.75rem;
 }
-.wellcome {
+.welcome {
   height: 250px;
-  font-size: 2em;
+  /* font-size: 2em; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,10 +73,10 @@ main {
   grid-template-areas: "small-box small-box small-box small-box small-box small-box" "title1 title1 title2 title3 title4 title5" "title6 title6 title7 title8 title9 title10";
   /* border: 3px solid black; */
 }
-.item {
+/* .item {
   background-color: crimson;
-  /* border: 3px solid red; */
-}
+  border: 3px solid red;
+} */
 .small-box {
   display: grid;
   grid-gap: 20px;
@@ -163,9 +163,9 @@ div.img .text-box {
     grid-template-columns: repeat(auto-fit, 100%);
     grid-template-areas: none;
   }
-  .wellcome {
+  /* .welcome {
     font-size: 1em;
-  }
+  } */
   .small-box {
     grid-template-rows: 50px 50px 50px;
     grid-template-columns: 1fr;
