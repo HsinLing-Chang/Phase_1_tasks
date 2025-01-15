@@ -138,9 +138,12 @@ def func(*data):
     word_count = {}
     # 尋找中間名
     for name in data:
-        # 名字長度大於等於3
-        if len(name) >= 3:
+        # 名字長度大於等於3,小於5
+        if 3 <= len(name) < 5:
             word = name[-2]
+        # 名字長度等於5
+        elif len(name) == 5:
+            word = name[2]
          # 名字長度只有2
         elif len(name) <= 2:
             word = name[-1]
