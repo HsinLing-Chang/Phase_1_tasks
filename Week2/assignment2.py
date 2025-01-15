@@ -2,6 +2,7 @@ print("=================================Task1===================================
 
 
 def find_and_print(messages, current_station):
+    # 給定station編號
     stations = {
         "Songshan": 0,
         "Nanjing Sanmin": 1,
@@ -197,7 +198,7 @@ def find(spaces, stat, n):
         # 如果spaces大於或等於人數
         if spaces[i] >= n:
             res = min(res, spaces[i])  # 找到最適數量
-            if res == spaces[i]:  # 記錄符合條件的spaces與index
+            if res == spaces[i]:  # 記錄符合條件的index
                 stack.append(i)
     if not stack:
         print(-1)

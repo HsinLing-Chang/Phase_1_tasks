@@ -11,6 +11,7 @@
         "====================================Task1==========================================="
       );
       function findAndPrint(messages, currentStation) {
+        //給定station編號
         const stations = {
           Songshan: 0,
           "Nanjing Sanmin": 1,
@@ -90,10 +91,13 @@
           let end = start + duration;
           for (const [start_time, end_time] of this.schedule) {
             if (start <= start_time && end >= end_time) {
+              // 欲預約時間完全涵蓋已預約時間
               return null;
             } else if (start >= start_time && end <= end_time) {
+              //初始即終止預約時間在已預約時間之內
               return null;
             } else if (
+              //欲預約之起始時間或終止時間涵蓋已預約時間
               (start_time < end && end <= end_time) ||
               (start_time <= start && start < end_time)
             ) {
@@ -153,15 +157,20 @@
       function func(...data) {
         const word_count = {};
         let word;
+        //尋找中間名
         for (const name of data) {
+          //名字長度大於等於3
           if (name.length >= 3) {
             word = name.slice(-2, -1);
           } else if (name.length <= 2) {
+            //名字長度小於2
             word = name.slice(-1);
           }
+          // {word: [count, name]} ,ex: {大: [1, 彭大明], 明:[2, 吳明]}
           word_count[word] = [(word_count[word] || [0, name])[0] + 1, name];
         }
         // console.log(word_count);
+        //尋找符合條件的人
         let result = Object.values(word_count).find((value) => value[0] == 1);
         if (result) {
           console.log(result[1]);
@@ -204,15 +213,18 @@
       );
 
       function find(spaces, stat, n) {
-        const stack = [];
+        const stack = []; //stack = [index]
         let res = Infinity;
         for (const i in stat) {
+          //確認spaces availability
           if (stat[i] == 0) {
             continue;
           }
+          //如果spaces大於或等於人數
           if (spaces[i] >= n) {
-            res = Math.min(res, spaces[i]);
+            res = Math.min(res, spaces[i]); //找到最適數量
             if (res == spaces[i]) {
+              //記錄符合條件的index
               stack.push(i);
             }
           }
