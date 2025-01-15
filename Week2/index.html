@@ -159,14 +159,14 @@
         let word;
         //尋找中間名
         for (const name of data) {
-          //名字長度大於等於3,小於5
-          if (name.length >= 3 && name.length < 5) {
-            word = name.slice(-2, -1);
-          } else if (name.length == 5) {
+          if (name.length == 5) {
             //名字長度等於5
             word = name.slice(2, 3);
-          } else if (name.length <= 2) {
-            //名字長度小於2
+          } else if (name.length >= 3) {
+            //名字長度大於等於3,小於5
+            word = name.slice(-2, -1);
+          } else if (name.length == 2) {
+            //名字長度等於2
             word = name.slice(-1);
           }
           // {word: [count, name]} ,ex: {大: [1, 彭大明], 明:[2, 吳明]}
