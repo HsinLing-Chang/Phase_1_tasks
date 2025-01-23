@@ -147,7 +147,7 @@ def func(*data):
         elif len(name) == 2:
             # 名字長度只有2
             word = name[-1]
-        # {word: (count, name)}, ex: {大: (1, 彭大明), 明:(2, 吳明)}
+        # {word: (count, name)}, ex: {大: (1, 彭大強), 明:(2, 吳明)}
         word_count[word] = word_count.get(word, [0, name])[0] + 1, name
 
     # 確認中間名數量

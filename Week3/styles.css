@@ -1,0 +1,272 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 20px;
+}
+header {
+  position: sticky;
+  top: 0;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  z-index: 10;
+}
+header .logo {
+  font-weight: bold;
+  margin: 0.75rem;
+}
+header .toggle-btn {
+  display: block;
+  margin-right: 15px;
+  height: 35px;
+  width: 35px;
+  display: none;
+  background-image: url(static/2849812_menu_multimedia_bars_media_icon.png);
+  background-repeat: none;
+  background-position: center;
+  background-size: cover;
+}
+
+header .nav-bar ul {
+  list-style: none;
+  display: flex;
+}
+header .nav-bar ul li {
+  padding: 0 15px;
+  &:hover {
+    background-color: #a7a4a4;
+  }
+}
+header .nav-bar ul li a {
+  text-decoration: none;
+  color: black;
+  display: block;
+  padding: 0.75rem;
+}
+.welcome {
+  height: 250px;
+  font-size: 2em;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(221, 238, 248);
+}
+main {
+  display: flex;
+  justify-content: center;
+}
+.load-more-btn {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.load-more {
+  padding: 1rem 1.5rem;
+}
+.container {
+  margin: 40px 0;
+  padding: 10px;
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 50px 150px 150px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+  grid-template-areas: "small-box small-box small-box small-box small-box small-box" "title1 title1 title2 title3 title4 title5" "title6 title6 title7 title8 title9 title10";
+  /* border: 3px solid black; */
+  & > div:nth-child(5n + 2) {
+    grid-column: span 2;
+    height: 150px;
+  }
+}
+/* .item {
+  background-color: crimson;
+  border: 3px solid red;
+} */
+.small-box {
+  display: grid;
+  grid-gap: 20px;
+  grid-auto-flow: column;
+  grid-template-rows: 50px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-area: small-box;
+}
+.small-box .small {
+  background-color: rgb(221, 238, 248);
+}
+/* Task3設定 */
+.img-container {
+  max-width: 100%;
+  max-height: 100%;
+}
+.small-box .small-image {
+  /* Task3設定 */
+  display: inline-block;
+  width: 80px;
+  height: 100%;
+  vertical-align: middle;
+}
+.small-box .small-text {
+  /* font-weight: bold; */
+  display: inline-block;
+  vertical-align: middle;
+}
+/* .span2 {
+  grid-column: span 2;
+  height: 150px;
+} */
+/* .item1 {
+  grid-column: span 2;
+}
+.item6 {
+  grid-area: title6;
+} */
+div.img {
+  /* background-image: url(static/images.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
+  position: relative;
+}
+/* Task3設定 */
+.picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+div.img .star {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  opacity: 50%;
+}
+div.img .text-box {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+/* Task3設定 */
+.text-box .small-text {
+  overflow: hidden;
+  text-overflow: ellipsis; /*顯示省略號*/
+  white-space: nowrap;
+}
+.box {
+  height: 150px;
+}
+@media (min-width: 600px) and (max-width: 1200px) {
+  .container {
+    width: 90%;
+    grid-template-rows: 120px 200px 200px 200px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "small-box small-box small-box small-box"
+      "title1 title2 title3 title4" "title5 title6 title7 title8"
+      "title9 title9 title10 title10";
+    & > div:nth-child(10n + 10),
+    & > div:nth-child(10n + 11) {
+      grid-column: span 2;
+      height: 200px;
+    }
+    & > div:nth-child(5n + 2) {
+      grid-column: auto;
+      height: 200px;
+    }
+  }
+  .small-box {
+    grid-auto-flow: row;
+    grid-template-rows: 50px 50px;
+    grid-template-columns: 1fr 1fr;
+    grid-area: small-box;
+    grid-template-areas: "small-row-1 small-row2" "small-row-3 small-row-3";
+  }
+  .small-box .small-3 {
+    grid-area: small-row-3;
+  }
+  .box {
+    height: 200px;
+  }
+  /* .span2 {
+    grid-column: span 1;
+    height: 200px;
+  } */
+  /* .item9 {
+    grid-area: title9;
+  }
+  .item10 {
+    grid-area: title10;
+  } */
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+    grid-template-rows: repeat(11, 190px);
+    grid-template-columns: repeat(auto-fit, 100%);
+    grid-template-areas: none;
+    & > div:nth-child(10n + 10),
+    & > div:nth-child(10n + 11) {
+      grid-column: auto;
+      height: 190px;
+    }
+    & > div:nth-child(5n + 2) {
+      grid-column: auto;
+      height: 190px;
+    }
+  }
+  /* .welcome {
+    font-size: 1em;
+  } */
+  .small-box {
+    grid-template-rows: 50px 50px 50px;
+    grid-template-columns: 1fr;
+  }
+  /* 最後高度設定在此 */
+  .container .box {
+    grid-area: unset;
+    height: 190px;
+  }
+  header .nav-bar {
+    display: none;
+    height: 100vh;
+    width: 60%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: -1px 0 4px black;
+  }
+  header .nav-bar ul {
+    flex-direction: column;
+    /* padding-top: 1.25rem; */
+  }
+  header .nav-bar ul li {
+    text-align: center;
+    margin: 1rem 0;
+  }
+  header .toggle-btn {
+    display: block;
+    z-index: 5;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .nav-bar.active {
+    display: block;
+  }
+  header .toggle-btn.active {
+    background-image: url(static/4115230_cancel_close_delete_icon.png);
+  }
+}
