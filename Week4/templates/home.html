@@ -1,0 +1,65 @@
+{% extends "base.html" %} {% block name %}Home Page{% endblock %} {% block
+header%}歡迎光臨，請輸入帳號密碼{% endblock %} {% block main %}
+<div class="form">
+  <div><h3>登入系統</h3></div>
+
+  <form class="sign-in" action="/signin" , method="POST">
+    <div class="username">
+      <label for="username">帳號：</label>
+      <input type="text" name="username" id="username" />
+    </div>
+    <div class="password">
+      <label for="password">密碼：</label>
+      <input type="password" name="password" id="password" />
+    </div>
+    <div class="check-box">
+      <label for="consent">同意條款</label>
+      <input type="checkbox" name="consent" id="consent" />
+    </div>
+    <button class="sign-in-btn">登入</button>
+  </form>
+</div>
+{% endblock %} {% block caculate %}
+<hr />
+<section>
+  <div class="calculator">
+    <div><h3>計算正整數的平方</h3></div>
+    <div class="int">
+      <label for="int">正整數</label>
+      <input type="text" id="int" />
+    </div>
+    <a class="calculate-btn"><button>計算</button></a>
+  </div>
+</section>
+{% endblock %} {% block script %}
+<script>
+  //登入表單設定
+  const submitForm = document.querySelector(".sign-in");
+  submitForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const checkBox = document.querySelector("#consent");
+    if (!checkBox.checked) {
+      alert("Please check the checkbox first");
+    } else {
+      submitForm.submit();
+    }
+  });
+
+  //整數設定
+  const calculateBtn = document.querySelector(".calculate-btn");
+  calculateBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const number = document.querySelector("#int").value;
+    if (
+      number &&
+      !isNaN(Number(number)) &&
+      Number.isInteger(Number(number)) &&
+      Number(number) >= 0
+    ) {
+      window.location.href = `/square/${number}`;
+    } else {
+      alert("Please enter a positive number");
+    }
+  });
+</script>
+{% endblock %}

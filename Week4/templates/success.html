@@ -1,0 +1,5 @@
+{% extends "base.html" %} {% block name %}Success Page{% endblock %} {% block
+header %}歡迎光臨，這是會員頁{% endblock %} {% block main %}
+<h3>恭喜{{username}}，您已成功登入系統</h3>
+<p><a href="{{url_for('sign_out')}}">登出系統</a></p>
+{% endblock %}

@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.header {
+  background-color: rgb(34, 51, 68);
+  padding: 3rem;
+  text-align: center;
+}
+.header h1 {
+  color: white;
+}
+
+.main {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.form div {
+  margin-bottom: 1rem;
+}
+.form form .sign-in {
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+}
+form {
+  font-size: 1.25rem;
+}
+form input {
+  height: 1.5rem;
+  vertical-align: middle;
+}
+form label {
+  vertical-align: middle;
+}
+.sign-in-btn {
+  padding: 0.25rem 0.5rem;
+}
+section {
+  padding: 2rem;
+}
+section .calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+section .calculator div {
+  margin-bottom: 1rem;
+}
+section .calculator .int {
+  font-size: 1.25rem;
+}
+section .calculator .int input {
+  height: 1.5rem;
+  vertical-align: middle;
+}
+section .calculator .int label {
+  vertical-align: middle;
+}
+section .calculator button {
+  padding: 0.25rem 0.5rem;
+}
