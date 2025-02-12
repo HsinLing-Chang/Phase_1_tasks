@@ -16,7 +16,7 @@ templates = Jinja2Templates(directory="templates")
 
 # 處理HTTPException
 @app.exception_handler(HTTPException)
-async def httpException_handler(request: Request, exc: HTTPException):
+async def http_exception_handler(request: Request, exc: HTTPException):
     if exc.status_code == 404:
         return RedirectResponse(url=f"/error?message={exc.detail}", status_code=status.HTTP_302_FOUND)
 
