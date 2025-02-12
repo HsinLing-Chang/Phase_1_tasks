@@ -10,7 +10,7 @@
   CREATE DATABASE website;
   ```
 
-  ![Create database website](/Task2/Create_websit_DB.png)
+  ![Create database website](Task2/Create_websit_DB.png)
 
 - Create a new table named member, in the website database.
 
@@ -25,9 +25,9 @@
     );
   ```
 
-  ![Create member table](/Task2/Create_member_table.png)
+  ![Create member table](Task2/Create_member_table.png)
 
-  ![Table description](/Task2/Member_table_description.png)
+  ![Table description](Task2/Member_table_description.png)
 
 ### Task 3: SQL CRUD
 
@@ -44,7 +44,7 @@
   ('Adam', 'Adam', 123);
   ```
 
-  ![Insert 5 row in member table](/Task3/Inser_into_columns.png)
+  ![Insert 5 row in member table](Task3/Inser_into_columns.png)
 
 - SELECT all rows from the member table.
 
@@ -52,7 +52,7 @@
   SELECT * FROM member;
   ```
 
-  ![Member table result](/Task3/Inser_into_column_result.png)
+  ![Member table result](Task3/Inser_into_column_result.png)
 
 - SELECT all rows from the member table, in descending order of time.
 
@@ -60,7 +60,7 @@
   SELECT * FROM member ORDER BY time DESC;
   ```
 
-  ![Member table order by time](/Task3/table_column_order_by_time_desc.png)
+  ![Member table order by time](Task3/table_column_order_by_time_desc.png)
 
 - SELECT total 3 rows, second to fourth, from the member table, in descending order
   of time.
@@ -70,7 +70,7 @@
 
   ```
 
-  ![Member table limit 3 offset 1](/Task3/Member_table_desc_order_limit_3_offset_1.png)
+  ![Member table limit 3 offset 1](Task3/Member_table_desc_order_limit_3_offset_1.png)
 
 - SELECT rows where username equals to test.
 
@@ -78,7 +78,7 @@
   SELECT * FROM member WHERE username = 'test';
   ```
 
-  ![Select member table where username equals to 'test'](/Task3/Select_row_where_username_test.png)
+  ![Select member table where username equals to 'test'](Task3/Select_row_where_username_test.png)
 
 - SELECT rows where name includes the es keyword.
 
@@ -86,7 +86,7 @@
   SELECT * FROM member WHERE name LIKE '%es%';
   ```
 
-  ![Select row where name includes 'es'](/Task3/Select_name_include_es.png)
+  ![Select row where name includes 'es'](Task3/Select_name_include_es.png)
 
 - SELECT rows where both username and password equal to test.
 
@@ -94,7 +94,7 @@
   SELECT * FROM member WHERE username = 'test' AND password = 'test';
   ```
 
-  ![Select row where name and username equal to 'test'](/Task3/member_row_where_username_and_password_test.png)
+  ![Select row where name and username equal to 'test'](Task3/member_row_where_username_and_password_test.png)
 
 - UPDATE data in name column to test2 where username equals to test.
 
@@ -102,7 +102,7 @@
   UPDATE member SET name = 'test2' WHERE username = 'test';
   ```
 
-  ![Update name to 'test2' where username equals to test](/Task3/Update_name_to_test2_where_username_test.png)
+  ![Update name to 'test2' where username equals to test](Task3/Update_name_to_test2_where_username_test.png)
 
 ### Task 4: SQL Aggregation Functions
 
@@ -112,7 +112,7 @@
   SELECT COUNT(*) FROM member;
   ```
 
-  ![Select the row count](/Task4/Total_row_member.png)
+  ![Select the row count](Task4/Total_row_member.png)
 
 - SELECT the sum of follower_count of all the rows from the member table.
 
@@ -120,7 +120,7 @@
   SELECT SUM(follower_count) FROM member;
   ```
 
-  ![The sum of the follower_count](/Task4/Sum_of_follower_count.png)
+  ![The sum of the follower_count](Task4/Sum_of_follower_count.png)
 
 - SELECT the average of follower_count of all the rows from the member table.
 
@@ -128,7 +128,7 @@
   SELECT AVG(follower_count) FROM member;
   ```
 
-  ![Average of follower_count](/Task4/Average_of_follower_count.png)
+  ![Average of follower_count](Task4/Average_of_follower_count.png)
 
 - SELECT the average of follower_count of the first 2 rows, in descending order of
   follower_count, from the member table.
@@ -140,7 +140,7 @@
   SELECT AVG(follower_count) FROM top_follower;
   ```
 
-  ![Average of First two row of follower_count](/Task4/Average_of_first_two_follower_count.png)
+  ![Average of First two row of follower_count](Task4/Average_of_first_two_follower_count.png)
 
 ### Task 5: SQL JOIN
 
@@ -157,7 +157,7 @@
   );
   ```
 
-  ![Crearte message table](/Task5/Create%20message%20table.png)
+  ![Crearte message table](Task5/Create%20message%20table.png)
 
 - SELECT all messages, including sender names. We have to JOIN the member table to get that.
 
@@ -167,7 +167,7 @@
   INNER JOIN member ON message.member_id = member.id;
   ```
 
-  ![Select message table with sender name](/Task5/Message_table_with_sender_name.png)
+  ![Select message table with sender name](Task5/Message_table_with_sender_name.png)
 
 - SELECT all messages, including sender names, where sender username equals to test. We have to JOIN the member table to filter and get that.
 
@@ -178,7 +178,7 @@
   WHERE member.username = 'test';
   ```
 
-  ![Message table row with member username equals to 'test'](/Task5/Message_table_where_member_username_test.png)
+  ![Message table row with member username equals to 'test'](Task5/Message_table_where_member_username_test.png)
 
 - Use SELECT, SQL Aggregation Functions with JOIN statement, get the average like
   count of messages where sender username equals to test.
@@ -190,7 +190,7 @@
   WHERE member.username = 'test';
   ```
 
-  ![Average like_count where username equals to 'test'](/Task5/Message_Table_average_like_count_join_member_username_test.png)
+  ![Average like_count where username equals to 'test'](Task5/Message_Table_average_like_count_join_member_username_test.png)
 
 - Use SELECT, SQL Aggregation Functions with JOIN statement, get the average like
   count of messages GROUP BY sender username.
@@ -202,4 +202,4 @@
   GROUP BY member.username;
   ```
 
-  ![Average like_count group by username](/Task5/Message_avg_like_count_group_by_username.png)
+  ![Average like_count group by username](Task5/Message_avg_like_count_group_by_username.png)
