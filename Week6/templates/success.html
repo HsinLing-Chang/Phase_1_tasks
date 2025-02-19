@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block name %}Success Page{% endblock %} {% block
+header %}歡迎光臨，這是會員頁{% endblock %} {% block main %}
+<div class="page">
+  <h3>{{username}}，歡迎登入系統</h3>
+  <p><a href="{{url_for('sign_out')}}">登出系統</a></p>
+</div>
+{% endblock %} {% block msgform %}
+<hr />
+<div class="msg-form-wrapper">
+  <form action="/createMessage" class="msg-form" method="post">
+    <div><h3>快來留言吧</h3></div>
+
+    <div>
+      <label for="msg">內容： </label>
+      <input type="text" name="msg" id="msg" required />
+    </div>
+    <button>送出</button>
+  </form>
+</div>
+<hr />
+{% endblock %} {% block msg_display %}
+<div class="msg-display">
+  <ul>
+    {% for msg in msg %}
+    <li>
+      {{msg.name}}: {{msg.content}} {% if msg.id==user_id %}
+      <form
+        class="delete-msg"
+        action="/deleteMessage/{{msg.message_id}}"
+        style="display: inline-block"
+        method="post"
+      >
+        <button>X</button>
+      </form>
+
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %} {% block script %}
+<script>
+  const deleteForm = document.querySelectorAll(".delete-msg");
+  deleteForm.forEach((element) => {
+    element.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (confirm("Do you want to delete this message?")) {
+        this.submit();
+      }
+    });
+  });
+</script>
+{% endblock %}
