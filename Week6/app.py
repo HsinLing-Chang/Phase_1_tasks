@@ -66,6 +66,8 @@ def http_exception_handler(request: Request, exc: HTTPException):
         return RedirectResponse(url=f"/error?message={exc.detail}", status_code=status.HTTP_302_FOUND)
     if exc.status_code == 401:
         return RedirectResponse(url=f"/error?message={exc.detail}", status_code=status.HTTP_302_FOUND,)
+    if exc.status_code == 403:
+        return RedirectResponse(url=f"/error?message={exc.detail}", status_code=status.HTTP_302_FOUND)
     if exc.status_code == 404:
         return RedirectResponse(url=f"/error?message={exc.detail}", status_code=status.HTTP_302_FOUND)
 
