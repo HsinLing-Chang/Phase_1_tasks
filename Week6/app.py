@@ -21,8 +21,6 @@ app.add_middleware(SessionMiddleware, secret_key="session_key")
 
 app.mount("/static", StaticFiles(directory="static"), name="static666")
 templates = Jinja2Templates(directory="templates")
-MEMBER = 'member'
-MESSAGE = "message"
 
 
 class UserForm(BaseModel):
@@ -53,6 +51,14 @@ def get_db():
         conn.close()
 
 
+def get_user_from_session(request: Request):
+    user = request.session
+    if not user:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Please log in before performing this action.")
+    return user
+
+
 # 處理HTTPException
 @app.exception_handler(HTTPException)
 def http_exception_handler(request: Request, exc: HTTPException):
@@ -72,14 +78,14 @@ def form_data(request: Request):
 @app.post('/signup')
 def create_user(userForm: Annotated[UserForm, Depends(UserForm.form)], db=Depends(get_db)):
     db.execute(
-        f"SELECT * FROM {MEMBER} WHERE username= %s", (userForm.username,))
+        "SELECT * FROM member WHERE username= %s", (userForm.username,))
     user = db.fetchone()
     # print(user)
     if user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail="Repeated username")
 
-    sql_stat = f"INSERT INTO {MEMBER} (name, username, password) VALUES (%s, %s, %s)"
+    sql_stat = "INSERT INTO member (name, username, password) VALUES (%s, %s, %s)"
     values = (userForm.name, userForm.username, userForm.password)
     db.execute(sql_stat, values)
     print("User create successfully.")
@@ -88,7 +94,7 @@ def create_user(userForm: Annotated[UserForm, Depends(UserForm.form)], db=Depend
 
 @app.post("/signin", status_code=status.HTTP_302_FOUND)
 def sign_in(request: Request, userForm: Annotated[UserForm, Depends(UserForm.form)], db=Depends(get_db)):
-    db.execute(f"SELECT * FROM {MEMBER} WHERE username=%s AND password=%s",
+    db.execute("SELECT * FROM member WHERE username=%s AND password=%s",
                (userForm.username, userForm.password))
     user = db.fetchone()
     if user:
@@ -108,9 +114,8 @@ def success_page(request: Request, db=Depends(get_db)):
     if username:
         id = request.session.get("id")
         db.execute(
-            f"SELECT {MEMBER}.id, {MEMBER}.name, {MESSAGE}.content, {MESSAGE}.id AS message_id FROM {MESSAGE} INNER JOIN {MEMBER} ON {MESSAGE}.member_id={MEMBER}.id ")
+            f"SELECT member.id, member.name, message.content, message.id AS message_id FROM message INNER JOIN member ON message.member_id=member.id ")
         msg = db.fetchall()
-        print(msg)
         return templates.TemplateResponse(request, name="success.html", context={"username": username, "msg": msg, "user_id": id})
     return RedirectResponse(url="/", status_code=status.HTTP_302_FOUND)
 
@@ -122,18 +127,17 @@ def sign_out(request: Request):
 
 
 @app.post('/createMessage')
-def create_message(request: Request, db=Depends(get_db), msg: str = Form()):
-    id = request.session.get("id")
-    stat = f"INSERT INTO {MESSAGE} (member_id, content) VALUES (%s, %s)"
+def create_message(user: Annotated[dict, Depends(get_user_from_session)], db=Depends(get_db), msg: str = Form()):
+    id = user.get("id")
+    stat = "INSERT INTO message (member_id, content) VALUES (%s, %s)"
     values = (id, msg)
     db.execute(stat, values)
     return RedirectResponse(url="/member", status_code=status.HTTP_302_FOUND)
 
 
 @app.post('/deleteMessage/{id}')
-def delete_message(request: Request, id: int, db=Depends(get_db)):
-
-    db.execute(f'DELETE FROM {MESSAGE} WHERE id={id}')
+def delete_message(id: int, user: Annotated[dict, Depends(get_user_from_session)], db=Depends(get_db)):
+    db.execute('DELETE FROM message WHERE id = %s', (id,))
     print("Delete msg succefully.")
     return RedirectResponse(url="/member", status_code=status.HTTP_302_FOUND)
 
