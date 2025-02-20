@@ -139,10 +139,14 @@ def create_message(user: Annotated[dict, Depends(get_user_from_session)], db=Dep
 def delete_message(id: int, user: Annotated[dict, Depends(get_user_from_session)], db=Depends(get_db)):
     db.execute("SELECT member_id FROM message WHERE id=%s", (id,))
     sender = db.fetchone()
+    if not sender:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Message not found.")
     if user.get("id") == sender.get('member_id'):
         db.execute('DELETE FROM message WHERE id = %s', (id,))
-        print("Delete msg succefully.")
         return RedirectResponse(url="/member", status_code=status.HTTP_302_FOUND)
+    raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
+                        detail="This action is not authorized.")
 
 
 @app.get("/error")
