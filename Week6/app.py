@@ -137,9 +137,12 @@ def create_message(user: Annotated[dict, Depends(get_user_from_session)], db=Dep
 
 @app.post('/deleteMessage/{id}')
 def delete_message(id: int, user: Annotated[dict, Depends(get_user_from_session)], db=Depends(get_db)):
-    db.execute('DELETE FROM message WHERE id = %s', (id,))
-    print("Delete msg succefully.")
-    return RedirectResponse(url="/member", status_code=status.HTTP_302_FOUND)
+    db.execute("SELECT member_id FROM message WHERE id=%s", (id,))
+    sender = db.fetchone()
+    if user.get("id") == sender.get('member_id'):
+        db.execute('DELETE FROM message WHERE id = %s', (id,))
+        print("Delete msg succefully.")
+        return RedirectResponse(url="/member", status_code=status.HTTP_302_FOUND)
 
 
 @app.get("/error")
