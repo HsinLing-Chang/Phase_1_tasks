@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.header {
+  background-color: rgb(34, 51, 68);
+  padding: 3rem;
+  text-align: center;
+}
+.header h1 {
+  color: white;
+}
+
+/* .main {
+  padding: 3rem 0;
+} */
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+}
+.form form .sign-in {
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+}
+form {
+  font-size: 1.25rem;
+}
+form > div {
+  margin-bottom: 1rem;
+}
+form input {
+  height: 1.5rem;
+  vertical-align: middle;
+}
+form label {
+  vertical-align: middle;
+}
+button {
+  padding: 0.25rem 0.5rem;
+}
+.title {
+  padding: 1rem;
+}
+/* section {
+  padding: 2rem;
+}
+section .calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+section .calculator div {
+  margin-bottom: 1rem;
+}
+section .calculator .int {
+  font-size: 1.25rem;
+}
+section .calculator .int input {
+  height: 1.5rem;
+  vertical-align: middle;
+}
+section .calculator .int label {
+  vertical-align: middle;
+}
+section .calculator button {
+  padding: 0.25rem 0.5rem;
+} */
+hr {
+  flex-basis: 100%;
+  width: 100%;
+}
+.page {
+  padding: 2rem 3rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.msg-form-wrapper {
+  padding: 2rem 1.25rem;
+}
+.msg-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.msg-display {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.msg-display ul {
+  list-style: none;
+}
+.msg-display li {
+  padding: 0.25rem;
+  font-size: 20px;
+}

@@ -1,0 +1,85 @@
+{% extends "base.html" %} {% block name %}Success Page{% endblock %} {% block
+header %}歡迎光臨，這是會員頁{% endblock %} {% block main %}
+<div class="page">
+  <h3 class="welcome-msg">{{name}}，歡迎登入系統</h3>
+  <p><a href="{{url_for('sign_out')}}">登出系統</a></p>
+</div>
+{% endblock %} {% block queryAPI%}
+<hr />
+<form class="msg-form" method="get" style="margin: 2rem">
+  <div><h3>查詢會員姓名</h3></div>
+
+  <div>
+    <input
+      type="text"
+      name="search-user"
+      id="search-user"
+      class="search-user"
+    />
+    <button class="search-btn" type="button" onclick="searchUser()">
+      查詢
+    </button>
+  </div>
+  <div class="display-res"></div>
+</form>
+{% endblock %} {% block updateName %}
+<hr />
+<form class="msg-form" method="get" style="margin: 2rem">
+  <div><h3>更新我的姓名</h3></div>
+
+  <div>
+    <input
+      type="text"
+      name="update-name"
+      id="update-name"
+      class="update-name"
+    />
+    <button class="update-btn" type="button" onclick="updateName()">
+      更新
+    </button>
+  </div>
+  <div class="update-msg"></div>
+</form>
+{% endblock %} {% block script %}
+<script>
+  async function searchUser() {
+    const searchInput = document.querySelector(".search-user").value;
+    const displayRes = document.querySelector(".display-res");
+    if (searchInput) {
+      const data = await fetch(
+        `http://127.0.0.1:8000/api/member?username=${searchInput}`
+      );
+      const res = await data.json();
+      if (res.data) {
+        const username = res.data.username;
+        const name = res.data.name;
+        displayRes.textContent = `${name}(${username})`;
+      } else {
+        displayRes.textContent = "No Data";
+      }
+    }
+  }
+  async function updateName() {
+    const updateNameInput = document.querySelector(".update-name").value;
+    const updateMsg = document.querySelector(".update-msg");
+    if (updateNameInput) {
+      const data = await fetch("http://127.0.0.1:8000/api/member", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: updateNameInput }),
+      });
+      const res = await data.json();
+
+      if (res.ok) {
+        const welcomeMsg = document.querySelector(".welcome-msg");
+        welcomeMsg.textContent = `${updateNameInput}，歡迎登入系統`;
+        updateMsg.textContent = "Updated";
+      } else if (res.error) {
+        updateMsg.textContent = "Failed to Update";
+      }
+    }
+  }
+</script>
+{% endblock %}
