@@ -74,11 +74,12 @@ def http_exception_handler(request: Request, exc: HTTPException):
 
 
 @app.get("/api/member")
-def search_user(username: str, db=Depends(get_db), user_id=Depends(get_user_from_session)):
+def search_user(username: str, request: Request, db=Depends(get_db)):
+    user_id = request.session.get("id")
     db.execute(
         "Select id, name, username FROM member WHERE username = %s", (username,))
     user = db.fetchone()
-    if user:
+    if user and user_id:
         return JSONResponse(content={"data": {
             "id": user.get("id"),
             "name": user.get("name"),
